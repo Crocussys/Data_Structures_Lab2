@@ -112,6 +112,18 @@ ostream& operator << (ostream &out, MatrixTL &matrix)
     }
     return out;
 }
+bool operator == (MatrixTL &m1, MatrixTL &m2)
+{
+    if (m1.N != m2.N or m1.M != m2.M)
+        return false;
+    for (int i = 0; i < m1.N; i++){
+        for (int j = 0; j < m1.M; j++){
+            if (m1.arr[i][j] != m2.arr[i][j])
+                return false;
+        }
+    }
+    return true;
+}
 MatrixTL operator + (MatrixTL &m1, MatrixTL &m2)
 {
     if (m1.N != m2.N){
@@ -152,7 +164,7 @@ MatrixTL operator + (MatrixTL &m1, MatrixTL &m2)
         }
         k += min_p_mtrx.P + min_q_mtrx.Q + 1;
         for (int j = k; j < k + max_q_mtrx.Q - min_q_mtrx.Q; j++){
-            if (&max_q_mtrx == &max_p_mtrx){
+            if (max_q_mtrx == max_p_mtrx){
                 array[i][j] = max_q_mtrx.arr[i][j];
             }else{
                 array[i][j] = max_q_mtrx.arr[i][j-max_p_mtrx.P+min_p_mtrx.P];

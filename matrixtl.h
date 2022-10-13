@@ -27,6 +27,7 @@ public:
     friend istream& operator >> (istream &in, MatrixTL &matrix);
     friend ostream& operator << (ostream &out, MatrixTL &matrix);
     friend MatrixTL operator + (MatrixTL &m1, MatrixTL &m2);
+    friend bool operator == (MatrixTL &m1, MatrixTL &m2);
 };
 
 #endif // MATRIXTL_H
