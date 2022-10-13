@@ -19,6 +19,8 @@ public:
     MatrixTL(unsigned short int n, unsigned short int p, unsigned short int q, int **array);
 
     unsigned short int getN();
+    unsigned short int getP();
+    unsigned short int getQ();
     unsigned short int getM();
     int getValue(int i, int j);  // Получить значение элемента
 

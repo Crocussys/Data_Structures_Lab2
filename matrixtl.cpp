@@ -20,6 +20,14 @@ unsigned short int MatrixTL::getN()
 {
     return N;
 }
+unsigned short int MatrixTL::getP()
+{
+    return P;
+}
+unsigned short int MatrixTL::getQ()
+{
+    return Q;
+}
 unsigned short int MatrixTL::getM()
 {
     return M;
