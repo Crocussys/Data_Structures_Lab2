@@ -16,14 +16,6 @@ MatrixTL::MatrixTL(unsigned short int n, unsigned short int p, unsigned short in
     M = p + q + 1;
     arr = array;
 }
-//MatrixTL::~MatrixTL()
-//{
-//    for (int i = 0; i < N; i++){
-//        delete [] arr[i];
-//    }
-//    delete [] arr;
-//    arr = nullptr;
-//}
 unsigned short int MatrixTL::getN()
 {
     return N;
@@ -40,17 +32,66 @@ int MatrixTL::getValue(int i, int j)
 }
 istream& operator >> (istream &in, MatrixTL &matrix)
 {
-    in >> matrix.N;
-    in >> matrix.P;
-    in >> matrix.Q;
-    matrix.M = matrix.P + matrix.Q + 1;
-    matrix.arr = new int* [matrix.N];
-    for (int i = 0; i < matrix.N; i++){
-        matrix.arr[i] = new int [matrix.M];
-        for (int j = 0; j < matrix.M; j++){
-            in >> matrix.arr[i][j];
+    unsigned short int n;
+    unsigned short int p = 0;
+    unsigned short int q = 0;
+    in >> n;
+    int** input_arr = new int* [n];
+    for (int i = 0; i < n; i++){
+        input_arr[i] = new int [n];
+        for (int j = 0; j < n; j++){
+            in >> input_arr[i][j];
         }
     }
+    for (int k = 1; k < n; k++){
+        unsigned short int i = k;
+        unsigned short int j = 0;
+        bool flag = true;
+        for (int l = 1; l < n - k + 1; l++){
+            if (input_arr[i][j] != 0){
+                p++;
+                flag = false;
+                break;
+            }
+            i++;
+            j++;
+        }
+        if (flag)
+            break;
+    }
+    for (int k = 1; k < n; k++){
+        unsigned short int i = 0;
+        unsigned short int j = k;
+        bool flag = true;
+        for (int l = 1; l < n - k + 1; l++){
+            if (input_arr[i][j] != 0){
+                q++;
+                flag = false;
+                break;
+            }
+            i++;
+            j++;
+        }
+        if (flag)
+            break;
+    }
+    int** ans_arr = new int* [n];
+    for (int i = 0; i < n; i++){
+        ans_arr[i] = new int [p+q+1];
+        for (int j = 0; j < p+q+1; j++){
+            if (j - p + i >= 0 and j - p + i < n){
+                ans_arr[i][j] = input_arr[i][j-p+i];
+            }else{
+                ans_arr[i][j] = 0;
+            }
+        }
+    }
+    delete [] input_arr;
+    matrix.N = n;
+    matrix.P = p;
+    matrix.Q = q;
+    matrix.M = p + q + 1;
+    matrix.arr = ans_arr;
     return in;
 }
 ostream& operator << (ostream &out, MatrixTL &matrix)

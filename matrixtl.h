@@ -5,6 +5,7 @@
 using namespace std;
 
 
+/* Матрица ленточного строчного формата */
 class MatrixTL
 {
 private:
@@ -16,10 +17,11 @@ private:
 public:
     MatrixTL();
     MatrixTL(unsigned short int n, unsigned short int p, unsigned short int q, int **array);
-    //~MatrixTL();
+
     unsigned short int getN();
     unsigned short int getM();
-    int getValue(int i, int j);
+    int getValue(int i, int j);  // Получить значение элемента
+
     friend istream& operator >> (istream &in, MatrixTL &matrix);
     friend ostream& operator << (ostream &out, MatrixTL &matrix);
     friend MatrixTL operator + (MatrixTL &m1, MatrixTL &m2);

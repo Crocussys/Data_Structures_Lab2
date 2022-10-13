@@ -3,6 +3,7 @@
 #include "matrixtl.h"
 
 
+/* Матрица CCS (разреженный столбцовый) формата */
 class MatrixCCS
 {
 private:
@@ -16,7 +17,8 @@ private:
     int lj;
 public:
     MatrixCCS();
-    void fill(MatrixTL &mtrx);
+    MatrixCCS(MatrixTL &mtrx);
+
     friend ostream& operator << (ostream &out, MatrixCCS &matrix);
 };
 

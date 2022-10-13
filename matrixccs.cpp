@@ -33,7 +33,7 @@ void MatrixCCS::filling(MatrixTL &mtrx, unsigned short int st_n, unsigned short 
     }
 }
 
-void MatrixCCS::fill(MatrixTL &mtrx)
+MatrixCCS::MatrixCCS(MatrixTL &mtrx)
 {
     unsigned short int st_n = 0;
     unsigned short int end_n = 0;
