@@ -8,11 +8,12 @@ MatrixCCS::MatrixCCS()
     LI = nullptr;
     LJ = nullptr;
 }
+/* Проходит одну диагональ (столбец в новом формате) */
 void MatrixCCS::filling(MatrixTL &mtrx, unsigned short int st_n, unsigned short int end_n,
                         unsigned short int st_m, unsigned short int end_m)
 {
-    int i = st_n;
-    int j = st_m;
+    unsigned short int i = st_n;
+    unsigned short int j = st_m;
     bool flag = true;
     while (i <= end_n and j >= end_m){
         int val = mtrx.getValue(i, j);
@@ -35,7 +36,7 @@ void MatrixCCS::filling(MatrixTL &mtrx, unsigned short int st_n, unsigned short 
 
 MatrixCCS::MatrixCCS(MatrixTL &mtrx)
 {
-    unsigned short int n = mtrx.getN();
+    unsigned short int n = mtrx.getN();                   // Работа с индексами
     unsigned short int p = mtrx.getP();
     unsigned short int q = mtrx.getQ();
     unsigned short int m = mtrx.getM();
@@ -53,13 +54,13 @@ MatrixCCS::MatrixCCS(MatrixTL &mtrx)
     LI = new int[n*m];
     LJ = new int[n*m];
     lj = 0;
-    for (int i = 0; i < min - p - 1; i++){
+    for (unsigned short int i = 0; i < min - p - 1; i++){ // До диагонали
         filling(mtrx, st_n, end_n, st_m, end_m);
         end_n++;
         st_m++;
     }
     if (min == m){
-        for (int i = 0; i < n - q; i++){
+        for (unsigned short int i = 0; i < n - q; i++){   // После (матрица получилась широкая)
             filling(mtrx, st_n, end_n, st_m, end_m);
             if (end_n < n - 1)
                 end_n++;
@@ -68,7 +69,7 @@ MatrixCCS::MatrixCCS(MatrixTL &mtrx)
             st_n++;
         }
     }else{
-        for (int i = 0; i < m - q; i++){
+        for (unsigned short int i = 0; i < m - q; i++){   // После (матрица получилась вытянутая)
             filling(mtrx, st_n, end_n, st_m, end_m);
             if (st_m < m - 1)
                 st_m++;
@@ -80,17 +81,17 @@ MatrixCCS::MatrixCCS(MatrixTL &mtrx)
     LJ[size - 1] = size + 1;
 }
 ostream& operator << (ostream &out, MatrixCCS &matrix){
-    int len = matrix.size;
+    unsigned int len = matrix.size;
     out << "A: ";
-    for (int i = 0; i < len; i++){
+    for (unsigned int i = 0; i < len; i++){
         out << matrix.A[i] << " ";
     }
     out << endl << "LI: ";
-    for (int i = 0; i < len; i++){
+    for (unsigned int i = 0; i < len; i++){
         out << matrix.LI[i] << " ";
     }
     out << endl << "LJ: ";
-    for (int i = 0; i < len; i++){
+    for (unsigned int i = 0; i < len; i++){
         out << matrix.LJ[i] << " ";
     }
     return out;

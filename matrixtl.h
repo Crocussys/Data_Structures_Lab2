@@ -9,6 +9,7 @@ using namespace std;
 class MatrixTL
 {
 private:
+    MatrixTL(unsigned short int n, unsigned short int p, unsigned short int q, int **array);
     unsigned short int N;
     unsigned short int M;
     unsigned short int P;
@@ -16,18 +17,16 @@ private:
     int **arr;
 public:
     MatrixTL();
-    MatrixTL(unsigned short int n, unsigned short int p, unsigned short int q, int **array);
 
     unsigned short int getN();
     unsigned short int getP();
     unsigned short int getQ();
     unsigned short int getM();
-    int getValue(int i, int j);  // Получить значение элемента
+    int getValue(unsigned short int i, unsigned short int j);  // Получить значение элемента
 
     friend istream& operator >> (istream &in, MatrixTL &matrix);
     friend ostream& operator << (ostream &out, MatrixTL &matrix);
     friend MatrixTL operator + (MatrixTL &m1, MatrixTL &m2);
-    friend bool operator == (MatrixTL &m1, MatrixTL &m2);
 };
 
 #endif // MATRIXTL_H

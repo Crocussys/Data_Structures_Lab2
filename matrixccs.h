@@ -7,7 +7,7 @@
 class MatrixCCS
 {
 private:
-    int size;
+    unsigned int size;
     int *A;
     int *LI;
     int *LJ;
